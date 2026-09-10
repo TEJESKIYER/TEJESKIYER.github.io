@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tejes K. Iyer — robotics engineer</title>
+<meta name="description" content="Mechatronics engineer building bipedal hardware and the control software that walks it. Humanoid robotics, ROS 2, reinforcement learning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Manrope:wght@500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F7FC;
+    --card:#FFFFFF;
+    --ink:#141F3D;
+    --muted:#5D6B88;
+    --line:#E2E7F2;
+    --accent:#3B5BE0;
+    --mint:#E2F4EE;
+    --sky:#E4EDFD;
+    --lilac:#EDEAFC;
+    --sand:#FCEEDF;
+    --shadow:0 1px 2px rgba(20,31,61,.04), 0 8px 24px rgba(20,31,61,.06);
+    --shadow-lift:0 2px 6px rgba(20,31,61,.06), 0 18px 40px rgba(20,31,61,.10);
+    --r:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;
+  }
+  h1,h2,h3,.nav-name{font-family:Manrope,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;margin:0}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  /* ---------- sticky nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(245,247,252,.82);backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;transition:border-color .2s, box-shadow .2s;
+  }
+  nav.stuck{border-bottom-color:var(--line);box-shadow:0 4px 20px rgba(20,31,61,.04)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+  .nav-name{font-size:17px}
+  .nav-links{display:flex;gap:6px;align-items:center}
+  .nav-links a{
+    padding:7px 13px;border-radius:999px;text-decoration:none;font-size:15px;color:var(--muted);
+    transition:background .18s,color .18s;
+  }
+  .nav-links a:hover{background:var(--sky);color:var(--ink)}
+  .nav-links a.cta{background:var(--accent);color:#fff;font-weight:500}
+  .nav-links a.cta:hover{background:#2C48C4;color:#fff}
+  @media (max-width:640px){ .nav-links a:not(.cta){display:none} }
+
+  /* ---------- hero ---------- */
+  header.hero{padding:56px 0 40px}
+  header.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:#10715A;
+    padding:6px 14px;border-radius:999px;font-size:14px;font-weight:500;margin-bottom:20px;
+  }
+  .pill i{width:7px;height:7px;border-radius:50%;background:#16A97F;display:block}
+  h1{font-size:clamp(38px,5.6vw,60px);line-height:1.03}
+  .hero p{font-size:19px;color:var(--muted);max-width:46ch;margin:18px 0 0}
+  .hero-actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+  .btn{
+    display:inline-block;padding:12px 20px;border-radius:999px;text-decoration:none;font-size:15.5px;font-weight:500;
+    transition:transform .18s, box-shadow .18s, background .18s;
+  }
+  .btn.primary{background:var(--accent);color:#fff;box-shadow:var(--shadow)}
+  .btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+  .hero-media{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-lift);background:var(--card);line-height:0}
+  .hero-media video{width:100%;height:auto;max-height:440px;object-fit:cover;display:block}
+
+  /* ---------- sections ---------- */
+  section{padding:60px 0}
+  .eyebrow{color:var(--accent);font-weight:600;font-size:15px;margin:0 0 8px}
+  h2{font-size:clamp(27px,3.4vw,34px)}
+  .lede{color:var(--muted);max-width:60ch;margin:12px 0 0}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;margin-top:28px}
+  .about p{margin:0 0 16px;color:var(--muted)}
+  .about p strong{color:var(--ink);font-weight:500}
+  .facts{background:var(--card);border-radius:var(--r);padding:8px 22px;box-shadow:var(--shadow)}
+  .facts div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+  .facts div:last-child{border-bottom:none}
+  .facts span{color:var(--muted)}
+
+  /* project cards */
+  .cards{display:grid;gap:22px;margin-top:32px}
+  .card{
+    background:var(--card);border-radius:var(--r);padding:28px;box-shadow:var(--shadow);
+    transition:transform .22s, box-shadow .22s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+  .card-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px;margin-bottom:6px}
+  .card h3{font-size:22px}
+  .when{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted);background:var(--bg);padding:4px 10px;border-radius:999px}
+  .card p{margin:10px 0 14px;color:var(--muted)}
+  .card ul{margin:0;padding-left:20px;color:var(--muted)}
+  .card li{margin-bottom:7px}
+  .card li::marker{color:var(--accent)}
+  .tags{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .tags span{font-size:13px;padding:5px 11px;border-radius:999px;background:var(--sky);color:#2A3E72}
+  .card:nth-child(2n) .tags span{background:var(--lilac);color:#413A80}
+  .card:nth-child(3n) .tags span{background:var(--sand);color:#7A4A18}
+  code{font-family:"IBM Plex Mono",monospace;font-size:.88em;background:var(--bg);padding:2px 6px;border-radius:5px;color:var(--ink)}
+
+  .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:20px}
+  .shots figure{margin:0}
+  .shots img,.shots video{width:100%;height:170px;object-fit:cover;border-radius:12px;display:block;background:var(--bg)}
+  .shots.tall img,.shots.tall video{height:250px}
+  .shots figcaption{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.45}
+
+  /* skills grid */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:32px}
+  .skill{background:var(--card);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);transition:transform .22s,box-shadow .22s}
+  .skill:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+  .skill h3{font-size:16px;margin-bottom:12px}
+  .skill ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:7px}
+  .skill li{font-size:13.5px;padding:5px 11px;border-radius:999px;background:var(--bg);color:var(--muted)}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;margin-top:32px;align-items:start}
+  .contact-list{list-style:none;padding:0;margin:22px 0 0}
+  .contact-list li{padding:13px 0;border-bottom:1px solid var(--line);display:flex;gap:14px;font-size:16px}
+  .contact-list li:last-child{border-bottom:none}
+  .contact-list b{font-weight:500;color:var(--muted);width:80px;flex:none}
+  .contact-list a{color:var(--accent);text-decoration:none}
+  .contact-list a:hover{text-decoration:underline}
+  .form{background:var(--card);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:14.5px;font-weight:500;margin-bottom:6px}
+  .field input,.field textarea{
+    width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);
+    font:400 15.5px/1.5 "IBM Plex Sans",sans-serif;color:var(--ink);
+  }
+  .field textarea{min-height:110px;resize:vertical}
+  .form button{
+    width:100%;padding:13px;border:none;border-radius:999px;background:var(--accent);color:#fff;
+    font:500 15.5px Manrope,sans-serif;cursor:pointer;transition:background .18s,transform .18s;
+  }
+  .form button:hover{background:#2C48C4;transform:translateY(-2px)}
+  .form .hint{font-size:13px;color:var(--muted);margin:12px 0 0;text-align:center}
+
+  footer{padding:32px 0 48px;color:var(--muted);font-size:14.5px;border-top:1px solid var(--line)}
+
+  /* ---------- motion ---------- */
+  .reveal{opacity:0;transform:translateY(18px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal,.reveal.in{opacity:1;transform:none;transition:none}
+    .card:hover,.skill:hover,.btn:hover,.form button:hover{transform:none}
+  }
+
+  @media (max-width:820px){
+    header.hero .wrap,.about,.contact-grid{grid-template-columns:1fr;gap:26px}
+    .hero-media{order:-1}
+    section{padding:44px 0}
+  }
+  @media print{
+    nav,.hero-actions,.form,video{display:none}
+    body{background:#fff;font-size:11pt}
+    .card,.skill,.facts{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+    .shots img{height:110px}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <span class="nav-name">Tejes K. Iyer</span>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="pill"><i></i>Open to research and engineering roles</span>
+      <h1>I build humanoids and the software that walks them.</h1>
+      <p>Mechatronics engineer working on bipedal hardware, ROS 2 control, and reinforcement learning for locomotion. Currently in Tamil Nadu, happy to relocate.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#work">See the work</a>
+        <a class="btn ghost" href="resume.pdf">Résumé (PDF)</a>
+        <a class="btn ghost" href="https://github.com/TEJESKIYER">GitHub</a>
+      </div>
+    </div>
+    <figure class="hero-media">
+      <video src="media/walk-hero.mp4" poster="media/walk-hero.jpg" autoplay muted loop playsinline preload="metadata"
+             aria-label="The 19-DOF humanoid robot powered up and moving"></video>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section id="work">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Work</p>
+      <h2>Five projects, one loop</h2>
+      <p class="lede">CAD and actuators, ROS 2 integration, gait work in simulation, an interface to drive it, and hardware that had to survive being deployed outdoors.</p>
+    </div>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card-head"><h3>19-DOF bipedal humanoid</h3><span class="when">Nov 2025 – Jun 2026</span></div>
+        <p>A nineteen-degree-of-freedom biped designed in Fusion 360, printed and assembled in-house, and run from a Raspberry Pi over ROS 2.</p>
+        <ul>
+          <li>Full mechanical design and assembly — every structural part printed and finished by hand</li>
+          <li>Weight-relieved lattice shells for the limbs, so the leg servos aren't fighting their own linkages</li>
+          <li>Servo bridge translating joint targets in radians into ST3215 tick commands, with per-joint direction, home offset and travel limits calibrated individually</li>
+          <li>IMU and foot force sensing on board for balance and contact detection</li>
+          <li>URDF/XACRO built and validated in RViz before anything moved on hardware</li>
+          <li>YOLO vision navigation in progress on a Raspberry Pi 5 with the Pi AI Camera</li>
+        </ul>
+        <div class="shots">
+          <figure><img src="media/parts-layout.jpg" alt="Full set of 3D-printed humanoid parts laid out on a table" loading="lazy"><figcaption>Every structural part printed in-house</figcaption></figure>
+          <figure><img src="media/parts-print.jpg" alt="Printed lower-leg shells with support material attached" loading="lazy"><figcaption>Lattice-cored shells, supports still on</figcaption></figure>
+          <figure><img src="media/robot-lab.jpg" alt="Assembled humanoid robot standing in the lab" loading="lazy"><figcaption>Assembled and powered</figcaption></figure>
+          <figure><video src="media/step-test.mp4" poster="media/step-test.jpg" controls muted loop playsinline preload="none"></video><figcaption>Stepping test, weight shifting side to side</figcaption></figure>
+        </div>
+        <div class="tags"><span>ROS 2 Humble</span><span>Raspberry Pi</span><span>Fusion 360</span><span>3D printing</span><span>ST3215 servos</span><span>URDF</span></div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-head"><h3>Blind-walk gait generator</h3><span class="when">Gazebo + MuJoCo</span></div>
+        <p>A ROS 2 package that walks the humanoid without vision or contact sensing. The gait is generated in joint space — sinusoidal hip, knee and ankle trajectories with a lateral waist roll, ramped in from a stand pose — and every joint passes through a slew limiter and hard limits before it reaches an actuator. The same node runs in Gazebo and on the robot; only the parameters change.</p>
+        <ul>
+          <li>19 named joints published as a position vector through <code>ros2_control</code>, with PID gains tuned separately for arms and legs</li>
+          <li>Two parameter sets: 25&nbsp;Hz with a 1.2&nbsp;s step period in sim, 8&nbsp;Hz with a 3.2&nbsp;s step and a quarter of the gait amplitude on hardware, so a bad command can't slam a servo</li>
+          <li>Per-tick slew limit of 0.015&nbsp;rad in sim and 0.005&nbsp;rad on the robot, on top of per-joint range limits</li>
+          <li>A monitor node watches base height and roll/pitch in Gazebo and resets the model on a fall, so parameter sweeps run unattended</li>
+          <li>PPO agent trained in Gazebo with multi-objective reward shaping, reaching stable walking around 2M timesteps</li>
+          <li>Sim-to-real transfer in progress — moving the learned gait onto the physical robot, where the hand-tuned open-loop gait currently runs</li>
+          <li>Separate MuJoCo work trains locomotion with SAC (Stable-Baselines3) on a single RTX 4050 laptop — switching to SubprocVecEnv and retuning batch size cut CPU temperatures enough to finish long runs</li>
+        </ul>
+        <div class="shots">
+          <figure><img src="media/sim-stand.jpg" alt="Humanoid robot URDF standing in Gazebo" loading="lazy"><figcaption>URDF loaded and standing</figcaption></figure>
+          <figure><img src="media/sim-stride.jpg" alt="Humanoid robot mid-stride in Gazebo" loading="lazy"><figcaption>Mid-stride, blind-walk world</figcaption></figure>
+          <figure><img src="media/sim-fall.jpg" alt="Humanoid robot fallen flat in Gazebo" loading="lazy"><figcaption>A fall, caught by the monitor and reset</figcaption></figure>
+        </div>
+        <div class="tags"><span>ROS 2</span><span>ros2_control</span><span>Gazebo</span><span>MuJoCo</span><span>Stable-Baselines3</span><span>PPO</span><span>SAC</span></div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-head"><h3>Phone control for the humanoid</h3><span class="when">Onboard web app</span></div>
+        <p>A web interface served straight off the Raspberry Pi, so the robot can be driven from any phone on the same network without SSH or a laptop.</p>
+        <ul>
+          <li>Walk, stop and balance as one-tap commands mapped to ROS 2 actions</li>
+          <li>Voice control through browser speech recognition, for hands-free triggering mid-test</li>
+          <li>Status line reports what the robot actually did, not what was asked of it</li>
+        </ul>
+        <div class="shots tall">
+          <figure><img src="media/teleop.jpg" alt="Phone browser showing walk, stop, balance and voice controls" loading="lazy"><figcaption>Control page, mid-test</figcaption></figure>
+        </div>
+        <div class="tags"><span>Raspberry Pi</span><span>ROS 2</span><span>web server</span><span>speech recognition</span></div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-head"><h3>Long-range GPS tracking system</h3><span class="when">Jun – Aug 2024 · IIT Tirupati</span></div>
+        <p>A Raspberry Pi and SX1278 LoRa tracker built during a research internship at IIT Tirupati (IITTNiF, Dept. of Science &amp; Technology), deployed in the field rather than left on a bench.</p>
+        <ul>
+          <li>Hardware bring-up, firmware, and on-site testing across urban and open environments — 2&nbsp;km+ range achieved</li>
+          <li>Benchmarked RSSI and packet loss across sites; delivered the technical report to IITTNiF</li>
+        </ul>
+        <div class="tags"><span>Raspberry Pi</span><span>LoRaWAN</span><span>SX1278</span><span>GPS</span><span>embedded Linux</span></div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-head"><h3>6-DOF robotic arm</h3><span class="when">Aug – Dec 2024</span></div>
+        <p>A six-axis manipulator modelled in URDF/XACRO and planned with MoveIt 2, built ahead of the humanoid work to get hands-on with kinematics.</p>
+        <ul>
+          <li>Collision-aware motion planning, sub-10&nbsp;mm positional repeatability</li>
+          <li>DDPG trajectory controller as an alternative to classical IK</li>
+          <li>Real-time YOLO pick-and-place</li>
+        </ul>
+        <div class="shots">
+          <figure><img src="media/arm-1.jpg" alt="6-DOF printed robotic arm wired up on a bench beside a smaller test rig" loading="lazy"><figcaption>Arm and gripper on the bench, mid-wiring</figcaption></figure>
+          <figure><img src="media/arm-2.jpg" alt="Side view of the 6-DOF arm showing the geared wrist joint" loading="lazy"><figcaption>Geared wrist — the joint that set the repeatability limit</figcaption></figure>
+        </div>
+        <div class="tags"><span>MoveIt 2</span><span>ROS 2</span><span>DDPG</span><span>YOLO</span><span>URDF/XACRO</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">About</p>
+      <h2>Hardware first, then the policy</h2>
+    </div>
+    <div class="about reveal">
+      <div>
+        <p>I'm a mechatronics engineer out of Chandigarh University, based in Tamil Nadu, with a research internship at IIT Tirupati behind me. Most of what I know came from building a humanoid from nothing — <strong>printing every part, numbering every joint, and finding out which assumptions break when a real servo has to hold a real load</strong>.</p>
+        <p>That's shaped how I work. I'd rather run a conservative gait on hardware and watch what actually happens than trust a policy that only ever ran in a simulator. The interesting problems sit exactly where the model and the machine disagree.</p>
+        <p>I'm looking for research assistant positions and robotics engineering roles in humanoids, legged locomotion, or RL for control — in India or abroad. I also take freelance simulation and RL training work.</p>
+      </div>
+      <div class="facts">
+        <div><span>Based in</span>Tamil Nadu, India</div>
+        <div><span>Degree</span>B.E. Mechatronics, Chandigarh University (2022–2026)</div>
+        <div><span>Focus</span>Humanoids, locomotion, RL for control</div>
+        <div><span>Robot</span>19 joints, printed in-house</div>
+        <div><span>Open to</span>RA roles, robotics engineering, freelance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Skills</p>
+      <h2>What I use day to day</h2>
+      <p class="lede">Not everything I've ever opened — the tools I've shipped something with.</p>
+    </div>
+    <div class="skills">
+      <div class="skill reveal"><h3>Robotics</h3><ul><li>ROS 2 Humble</li><li>ros2_control</li><li>MoveIt 2</li><li>Nav2</li><li>RViz</li><li>URDF</li></ul></div>
+      <div class="skill reveal"><h3>Simulation</h3><ul><li>Gazebo</li><li>MuJoCo</li><li>PyBullet</li><li>Isaac Sim</li></ul></div>
+      <div class="skill reveal"><h3>Learning</h3><ul><li>Stable-Baselines3</li><li>PPO</li><li>SAC</li><li>DDPG</li><li>PyTorch</li><li>CUDA</li></ul></div>
+      <div class="skill reveal"><h3>Perception</h3><ul><li>SLAM</li><li>YOLO</li><li>OpenCV</li><li>IMU</li><li>Force sensing</li></ul></div>
+      <div class="skill reveal"><h3>Hardware</h3><ul><li>Raspberry Pi</li><li>Arduino</li><li>ST3215 servos</li><li>LoRaWAN</li><li>Fusion 360</li><li>SolidWorks</li><li>3D printing</li></ul></div>
+      <div class="skill reveal"><h3>Systems</h3><ul><li>Ubuntu</li><li>Docker</li><li>Python</li><li>C++</li><li>Git</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Let's talk</h2>
+      <p class="lede">Research groups, robotics teams, and freelance work all welcome. I reply to everything.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <ul class="contact-list">
+        <li><b>Email</b><a href="mailto:tejeskiyer@gmail.com">tejeskiyer@gmail.com</a></li>
+        <li><b>GitHub</b><a href="https://github.com/TEJESKIYER">github.com/TEJESKIYER</a></li>
+        <li><b>LinkedIn</b><a href="https://www.linkedin.com/in/tejeskiyer/">linkedin.com/in/tejeskiyer</a></li>
+        <li><b>Phone</b><a href="tel:+919843537966">+91 98435 37966</a></li>
+        <li><b>Location</b>Tamil Nadu, India</li>
+      </ul>
+      <div class="form">
+        <div class="field"><label for="name">Your name</label><input id="name" type="text" autocomplete="name"></div>
+        <div class="field"><label for="from">Your email</label><input id="from" type="email" autocomplete="email"></div>
+        <div class="field"><label for="msg">Message</label><textarea id="msg"></textarea></div>
+        <button id="send" type="button">Send message</button>
+        <p class="hint">Opens in your mail app — nothing is stored here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Built and maintained by Tejes K. Iyer.</div>
+</footer>
+
+<script>
+  // sticky nav shadow
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('stuck', window.scrollY > 8);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // scroll reveals
+  const items = document.querySelectorAll('.reveal');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (i * 60) + 'ms';
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {rootMargin: '0px 0px -60px 0px', threshold: 0.08});
+    items.forEach(el => io.observe(el));
+  }
+
+  // contact form -> mailto
+  document.getElementById('send').addEventListener('click', () => {
+    const to = 'tejeskiyer@gmail.com';
+    const name = document.getElementById('name').value.trim();
+    const from = document.getElementById('from').value.trim();
+    const msg = document.getElementById('msg').value.trim();
+    const subject = name ? ('Portfolio enquiry from ' + name) : 'Portfolio enquiry';
+    const body = msg + (from ? ('\n\n— ' + (name || '') + '\n' + from) : '');
+    window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+</script>
+</body>
+</html>
